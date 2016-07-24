@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Easylaunch Api 서버 제작기 #1
+title: Easylaunch Api 서버 제작기 - 1
 categories:
   - Ruby on Rails
   - Rorlab Workshop
