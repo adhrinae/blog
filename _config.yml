@@ -1,5 +1,5 @@
 # Site settings
-title: Rinae's Devlog
+title: Better than yesterday
 url: "http://emaren84.github.io"    # the protocol and hostname of your site, eg. `http://laobubu.github.io`
 baseurl: "/blog" # the prefix of your site uri, eg. `/jekyll-theme-EasyBook` or just one slash `/`
 timezone: Asia/Seoul
