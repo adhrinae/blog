@@ -1,3 +1,11 @@
+---
+layout: post
+title: Easylaunch Api 서버 제작기 - 2
+categories:
+  - Ruby on Rails
+  - Rorlab Workshop
+---
+
 ## Members 구현
 
 이번엔 생성된 `MealMeetUp` 에 새로운 맴버를 추가하는 기능을 구현할 것이다.
