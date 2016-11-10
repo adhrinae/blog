@@ -7,7 +7,7 @@ public: true
 
 > "I know more today than I did yesterday. That's my mindset of programming now."
 
-I'm a novice developer, aiming a decent developer now.
+I'm a novice RoR developer, aiming a decent web developer(focusing on Back-End) now.
 
 I always try to learn new tech with joy :)
 
