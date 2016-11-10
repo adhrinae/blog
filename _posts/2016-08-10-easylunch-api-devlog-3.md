@@ -115,7 +115,7 @@ Log를 먼저 찾아야 할지 Task를 먼저 찾아야 할지가 문제인데 L
 
 ```ruby
 # models/user.rb
-...
+# ...
   # 새로운 맴버 등록시 필요한 일련의 과정들
   def self.init_member(member_uid, meetup, messenger_code, task_code)
     user = find_by(service_uid: member_uid)
@@ -146,13 +146,13 @@ Log를 먼저 찾아야 할지 Task를 먼저 찾아야 할지가 문제인데 L
                           task_status: task_code)
     user
   end
-...
+# ...
   # 해당 user의 MeetUp등록 여부를 찾기 위해 Log > Task 연결하여 검색
   def find_enrolled_meetup(meetup_id)
     meal_logs.joins(:meal_meet_up_task).where(meal_meet_up_tasks:
                                               { meal_meet_up_id: meetup_id })
   end
-...
+# ...
 ```
 
 MeetUp에 User가 등록되어있는 지 여부는 MeetUp에 속한 Task가 있는지 여부로 구분하였다. 맴버가 등록된 적이 없으면 MeetUp에 해당하는 Log, Task를 작성한 적이 없을 테니까.
@@ -166,23 +166,23 @@ MeetUp에 User가 등록되어있는 지 여부는 MeetUp에 속한 Task가 있�
 
 ```ruby
 # meet_up_tasks_controller.rb
-...
+# ...
   def menu
     @meetup = find_meetup
     @meal_log = User.update_menu(@meetup, task_params)
     render_201(menu_response(@meal_log))
   end
-...
+# ...
 
 # models/user.rb
-...
+# ...
   def self.update_menu(meetup, user_info = {})
     user = find_by(service_uid: user_info[:member_id])
     user_log = user.find_enrolled_meetup(meetup.id) # 해당 MeetUp에 속하는 MealLog
     user_log.update(menu_name: user_info[:menu], price: user_info[:price])
     user_log
   end
-...
+# ...
 
 ```
 
@@ -205,16 +205,16 @@ API를 좀 다듬어서 작성하고 나니 코드를 변경하는게 쉬워졌�
 
 ```ruby
 # application_controller.rb
-...
+# ...
   def find_meetup
     @meetup = MealMeetUp.find_by(messenger_room_id:
                                  params[:data][:messenger_room_id])
   end
-...
+# ...
 
 
 # members_controller.rb
-...
+# ...
     def check_meetup
       meetup = find_meetup
       if meetup.nil?
@@ -225,7 +225,7 @@ API를 좀 다듬어서 작성하고 나니 코드를 변경하는게 쉬워졌�
         render json: { error: 'there is no member to enroll' }, status: 400
       end
     end
-...
+# ...
 ```
 
 이런식으로 find_meetup은 어느 컨트롤러에서 호출하여 같은 결과값을 얻고, 경우의 수에 따라 다른 에러를 표시하도록 적용하였다.
@@ -237,7 +237,7 @@ User 모델에 `find_enrolled_meetup` 을 사용하면 해당 유저와 유저�
 
 ```ruby
 # models/user.rb
-...
+# ...
   def self.update_task_status(meetup, user_info = {})
     task_code = CodeTable.find_task_status(user_info[:status]).id
     user = User.find_by(service_uid: user_info[:member_id])
@@ -245,7 +245,7 @@ User 모델에 `find_enrolled_meetup` 을 사용하면 해당 유저와 유저�
     task.update(task_status: task_code)
     task
   end
-...
+# ...
 ```
 
 ## 맴버 삭제 기능 추가
@@ -277,14 +277,14 @@ end
 
 ```ruby
 # members_controller.rb
-...
+# ...
   def delete_member
     target_member = member_params[:member_id].to_s
     User.delete_member(target_member, @meetup)
     render_200(member_response(find_meetup))
   end
 
-...
+# ...
     def check_add_member
       meetup = find_meetup
       if meetup.nil?
@@ -308,17 +308,17 @@ end
                status: 400
       end
     end
-...
+# ...
 
 
 # models/user.rb
-...
+# ...
   def self.delete_member(member_uid, meetup)
     user = find_by(service_uid: member_uid)
     target_log = user.find_enrolled_meetup(meetup.id)
     target_log.destroy
   end
-...
+# ...
 ```
 
 얼떨결에 `find_enrolled_meetup` 메서드가 대부분의 문제를 손쉽게 해결해주었다. 단순하게 joins 구문만 적절하게 이용해 주었을 뿐인데. MealLog에 설정해둔 `dependency` 도 잘 작동하였다.
@@ -338,7 +338,7 @@ end
 
 ```ruby
 # models/meal_meet_up.rb
-...
+# ...
   def update_status(total_price, meetup_status)
     if meetup_status == 'price_avg'
       price_avg(total_price)
@@ -354,14 +354,14 @@ end
       task.meal_log.update(price: avg_price)
     end
   end
-...
+# ...
 ```
 
 모든 맴버가 가격을 입력하도록 하는 메서드는 맴버가 상태를 업데이트 하는 메서드 마지막 부분에 따로 심어두었다.
 
 ```ruby
 # models/meal_meet_up_task.rb
-...
+# ...
   def check_completed
     result = meal_meet_up.meal_meet_up_tasks.all? do |task|
       task.status.value == 'paid'
@@ -422,7 +422,7 @@ end
 
 ```ruby
 # meal_meet_up_controller.rb
-...
+# ...
     # 해당하는 meetup이 없거나 admin_uid가 불일치, pay_type이 올바르지 않으면 에러
     def check_meetup_update
       meetup = find_meetup
@@ -440,7 +440,7 @@ end
         render_error_400('invalid pay type')
       end
     end
-...
+# ...
 ```
 
 Show로 리턴하는 정보는 기본적으로 update시의 리턴+딸려있는 맴버들의 각종 정보이다. 그래서 먼저 update시의 리턴 정보를 가져온 다음에 필요한 정보를 덧붙이는 형태로 만들었다.
@@ -448,7 +448,7 @@ Show로 리턴하는 정보는 기본적으로 update시의 리턴+딸려있는 
 ```ruby
 # meal_meet_up_helper.rb
 # 컨트롤러가 너무 커져서 리턴용 json을 출력하는 메서드들을 다 헬퍼 모듈로 옮겼다.
-...
+# ...
   def response_json_show(meetup)
     basic_data = response_json_update(meetup)
     members_info = meetup.meal_meet_up_tasks.map do |task|
@@ -461,5 +461,5 @@ Show로 리턴하는 정보는 기본적으로 update시의 리턴+딸려있는 
     basic_data[:data].merge(members_count: members_info.count,
                             members: members_info)
   end
-...
+# ...
 ```

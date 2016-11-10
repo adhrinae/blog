@@ -18,7 +18,7 @@ categories:
 그리고 routes.rb 파일에 api 경로를 추가해준다.
 
     # routes.rb
-    ...
+    # ...
     post '/members' => 'members#add_member', defaults: { format: 'json' }
 
 텅텅 빈 Members 컨트롤러에는 기본적으로 들어갈 메서드들이 있다.
@@ -69,7 +69,7 @@ end
 
 ```ruby
 class MembersController < ApplicationController
-...
+# ...
 
  def add_flow(member, meetup)
       user = User.create(service_uid: member)
@@ -88,7 +88,7 @@ class MembersController < ApplicationController
           messenger_room_id: meetup.messenger_room_id,
           member_ids: get_members_list(meetup) } }
     end
-...
+# ...
 ```
 
 사실 맨 밑의 member_ids는 좀 복잡하게 가져오더라도 맴버 추가에 성공한 id만 가져와야 하는게 맞을 것 같다.
@@ -209,7 +209,7 @@ class MealMeetUpController < ApplicationController
 
   def create
     init_meetup
-    ...
+    # ...
 
 ```
 
