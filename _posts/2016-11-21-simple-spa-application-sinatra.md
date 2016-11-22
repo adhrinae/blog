@@ -5,6 +5,7 @@ categories:
   - Ruby
   - Sinatra
 ---
+
 ## Beginning of the Heonchek-hunter
 
 예전에 레일즈로 **헌책 헌터** 라는 이름의 웹앱을 한번 만들어 본 적이 있다.
@@ -268,3 +269,6 @@ end
 특히 지금처럼 모든 웹 애플리케이션이 데이터베이스(혹은 모델)을 필요로 하는 것은 아니다. 이런 경우에는 레일즈보단 시나트라로 작성하는게 더 나아 보인다.
 
 앞으로도 더 복잡한 애플리케이션을 쉽게 잘 작성해보고 싶다. 공부해야할 것들이 너무나 많지만, 지금은 자바스크립트 위주의 공부부터 차근차근 도전중이다.
+
+**Source Code**: https://github.com/emaren84/heoncheck-hunter-sinatra
+
