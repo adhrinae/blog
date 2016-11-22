@@ -270,5 +270,4 @@ end
 
 앞으로도 더 복잡한 애플리케이션을 쉽게 잘 작성해보고 싶다. 공부해야할 것들이 너무나 많지만, 지금은 자바스크립트 위주의 공부부터 차근차근 도전중이다.
 
-**Source Code**: https://github.com/emaren84/heoncheck-hunter-sinatra
-
+**Source Code**: [https://github.com/emaren84/heoncheck-hunter-sinatra](https://github.com/emaren84/heoncheck-hunter-sinatra)
