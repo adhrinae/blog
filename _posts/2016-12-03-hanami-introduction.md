@@ -86,6 +86,7 @@ categories:
 먼저 하나미로 프로젝트를 생성하기 위해서는 `gem install hanami` 로 하나미가 설치되어 있어야 한다. 그 다음에는 새 프로젝트를 생성해본다.
 
     $ hanami new bookshelf
+    
 
 생성된 프로젝트의 폴더 구조를 살펴보면 다음과 같다.
 
@@ -161,7 +162,8 @@ action 뒤에 `web` 은 액션을 생성하고자 하는 컨테이너의 이름�
 그리고 서버를 실행한 뒤 `localhost:2300` 으로 접속해보면 심플하지만 Bookshelf라는 글씨가 보이는 페이지를 마주할 수 있다.
 (본 포스트에서는 빠른 진행을 위해 `application.html.erb` 파일을 미리 수정해두었다)
 
-  	$ bundle exec hanami server
+    $ bundle exec hanami server
+    
 
 ![Bookshelf Title]({{ site.baseurl }}/assets/2016-12-03-sc2.png)
 
@@ -170,7 +172,8 @@ action 뒤에 `web` 은 액션을 생성하고자 하는 컨테이너의 이름�
 
 본격적으로 책들을 저장하고 출력하기 위해 데이터베이스 마이그레이션을 진행해 보도록 한다. 먼저 마이그레이션 파일을 생성한다.
 
-  	$ bundle exec hanami generate migration create_books
+    $ bundle exec hanami generate migration create_books
+    
 
 생성된 마이그레이션 파일은 이렇게 작성해 보았다.
 
@@ -195,8 +198,8 @@ end
 
 마이그레이션 파일 작성이 완료되면 테이블을 생성해주는 명령어를 입력한다.
 
-  	$ bundle exec hanami db prepare
-  	$ bundle exec hanami db migrate
+    $ bundle exec hanami db prepare
+    $ bundle exec hanami db migrate
 
 그리고 `Book` 모델을 생성해준다.
 
@@ -232,7 +235,8 @@ $ bundle exec hanami console
 
 임의로 몇 개의 `Book` 레코드를 생성해주고 리스트를 표현해보기 위해 새 컨트롤러 액션을 생성한다.
 
-  	$ bundle exec hanami generate action web books#index
+    $ bundle exec hanami generate action web books#index
+    
 
 ```erb
 # apps/web/templates/books/index.html.erb
