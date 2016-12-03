@@ -31,6 +31,7 @@ categories:
 또한 DHH(David Heinemeier Hansson, 레일즈의 창시자)가 제시하고 있는 ['Rails way'에 반감을 가진 사람들이 점차 늘어나고](http://solnic.eu/2016/05/22/my-time-with-rails-is-up.html) 루비로 웹 개발을 하는 것에 대해 [레일즈 이외의 방법을 찾는](http://rwdtow.stdout.in/) 사람들이 점차 늘어나고 있다.
 
 ![현재 레일즈 커뮤니티]({{ site.baseurl }}/assets/2016-12-03-sc1.jpg)
+
 (출처: http://railshurts.com/current_state/)
 
 이러한 분위기 속에서 'Ruby way, not Rails' 를 표방하는 루비 기반 웹 프레임워크가 등장하였으니, 바로 이번에 소개할 [Hanami(하나미)](hanamirb.org)이다.
@@ -75,7 +76,8 @@ categories:
 
 먼저 하나미로 프로젝트를 생성하기 위해서는 `gem install hanami` 로 하나미가 설치되어 있어야 한다. 그 다음에는 새 프로젝트를 생성해본다.
 
-	hanami new bookshelf
+  $ hanami new bookshelf
+
 생성된 프로젝트의 폴더 구조를 살펴보면 다음과 같다.
 
 
@@ -138,7 +140,7 @@ action 뒤에 `web` 은 액션을 생성하고자 하는 컨테이너의 이름�
 
 컨트롤러는 폴더에 불과하며 그 폴더에 속한 각각의 액션들이 자신이 어느 컨트롤러인지 알고 있는 형태이다. 또한 뷰는 템플릿 파일(레일즈의 views 폴더 안에 있는 템플릿들)과 뷰 파일(레일즈에 비유하자면 뷰 헬퍼)로 구성되어있다. 지금은 템플릿 파일에 간단하게 제목을 추가해보도록 한다.
 
-```html
+```erb
 # apps/web/templates/home/index.html.erb
 <h1>Bookshelf</h1>
 ```
@@ -148,6 +150,7 @@ action 뒤에 `web` 은 액션을 생성하고자 하는 컨테이너의 이름�
 그리고 서버를 실행한 뒤 `localhost:2300` 으로 접속해보면 심플하지만 Bookshelf라는 글씨가 보이는 페이지를 마주할 수 있다.
 
 	$ bundle exec hanami server
+
 ![Bookshelf Title]({{ site.baseurl }}/assets/2016-12-03-sc2.png)
 
 
@@ -157,6 +160,7 @@ action 뒤에 `web` 은 액션을 생성하고자 하는 컨테이너의 이름�
 본격적으로 책들을 저장하고 출력하기 위해 데이터베이스 마이그레이션을 진행해 보도록 한다. 먼저 마이그레이션 파일을 생성한다.
 
 	$ bundle exec hanami generate migration create_books
+
 생성된 마이그레이션 파일의 내용을 채워줄 땐 다음과 같은 방식으로 지정해주면 된다.
 
 ```ruby
@@ -192,6 +196,7 @@ $ bundle exec hanami generate model book
       create  spec/bookshelf/entities/book_spec.rb
       create  spec/bookshelf/repositories/book_repository_spec.rb
 ```
+
 생성된 파일을 보면 조금 특이한 점을 볼 수 있는데 `entities` 폴더와 `repositories` 폴더가 따로 나뉘어져 있다는 점이다. `Entity` 는 도메인 객체로, 실제 데이터베이스 쿼리 등으로 추출된 자료 객체를 일컫는다. `Repository` 는 퍼시스턴스 계층과 `Entity` 를 이어주는 역할을 한다. 여기서 `Entity` 는 데이터베이스의 존재를 전혀 모르는 단순 루비 객체이며 테스트가 용이하고 가벼운 앱을 만드는데 도움이 된다.
 
 실제 콘솔에서 데이터를 다루어보면 이런 방식으로 동작한다.
@@ -217,6 +222,7 @@ $ bundle exec hanami console
 임의로 몇 개의 `Book` 레코드를 생성해주고 리스트를 표현해보기 위해 새 컨트롤러 액션을 생성한다.
 
 	$ bundle exec hanami generate action web books#index
+
 ```erb
 # apps/web/templates/books/index.html.erb
 <h2>All books</h2>
@@ -235,7 +241,7 @@ $ bundle exec hanami console
 <% end %>
 ```
 
-`books` 가 인스턴스 변수가 아니다? 실제로 액션 부분은 이렇게 작성되어 있다.
+`books` 가 인스턴스 변수가 아니다? 실제로 액션 부분은 이렇게 작성되어 있다.
 
 ```ruby
 # apps/web/controllers/books/index.rb
@@ -366,7 +372,7 @@ end
 
 `params` 로 시작하는 유효성 검사는 엔티티를 정의해놓은 것 같은 역할을 할 수 있겠다. 자세한 내용은 [가이드](http://hanamirb.org/guides/actions/parameters/)를 참고하면 손쉽게 작성할 수 있다.
 
-만약 패러매터가 유효하지 않다면 HTTP 상태 코드 422(Unprocessable Entity)를 리턴하고, 그에 알맞는 뷰를 다시 표현해 주어야 한다. 현재 `create` 액션에는 아무런 템플릿도 작성되어있지 않고, 실제로는 `new` 템플릿을 그대로 사용하면 되기 때문에 뷰 파일에 알맞는 템플릿을 정의해주면 된다.
+만약 패러매터가 유효하지 않다면 HTTP 상태 코드 422(Unprocessable Entity)를 리턴하고, 그에 알맞는 뷰를 다시 표현해 주어야 한다. 현재 `create` 액션에는 아무런 템플릿도 작성되어있지 않고, 실제로는 `new` 템플릿을 그대로 사용하면 되기 때문에 뷰 파일에 알맞는 템플릿을 정의해주면 된다.
 
 ```ruby
 # apps/web/views/books/create.rb
