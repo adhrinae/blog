@@ -2,14 +2,14 @@
 layout: post
 title: Easylaunch Api 서버 제작기 - 1
 categories:
-  - Ruby on Rails
+  - Rails
   - Rorlab Workshop
 ---
 
 ## Clone repository
 금방 하지 못했던 easylunch api 서버 프로젝트를 작성하기 시작했다.
 프로젝트 생성과 Gem 세팅 등은 이미 되어 있어서 github에 있는 레포를 클론하였고
-Issue #10 으로 분류되어 있어서 `ISS#10` 브랜치를 생성하였다. 
+Issue #10 으로 분류되어 있어서 `ISS#10` 브랜치를 생성하였다.
 이번에는 Bitbucket에서 작성했던 프로젝트와 다르게 development 브랜치를 두지 않고 이슈 브랜치에서 바로 master로 합치는 방식으로 진행하는가 보다.
 
 ## 모델 작성
@@ -17,9 +17,9 @@ Issue #10 으로 분류되어 있어서 `ISS#10` 브랜치를 생성하였다.
 처음엔 별 생각 없이 모델 생성하면서 string이나 integer만 구분하여 각 컬럼을 입력하고 있었다.
 
     rails g model MealLog user_id:integer menu_name:string price:integer meal_time:datetime
-    
+
 이렇게 테이블을 작성하고 나서 모델에서 따로 `belongs_to` 와 `has_many` 를 입력해줄 생각이었다.
-그러다 저번에 다른 튜토리얼에서 우연히 본 references를 이용할 생각이 뒤늦게 들어서 마이그레이션 파일을 변경해 주기로 했다. 
+그러다 저번에 다른 튜토리얼에서 우연히 본 references를 이용할 생각이 뒤늦게 들어서 마이그레이션 파일을 변경해 주기로 했다.
 
 마이그레이션 시 타입을 references로 지정해주면 model_id 생성과 함께 관계 설정을 해주는 코드(`belongs_to` / `has_many`)가 자동으로 삽입된다.
 다만 이미 마이그레이션 파일이 작성된 뒤였기 때문에(실행은 하지 않음) 다음과 같이 마이그레이션 파일을 변경해주었다.
@@ -44,7 +44,7 @@ end
 외부 키를 추가할 때는 마이그레이션 파일에 add_foreign_key 메서드를 사용해야 한다. 이 경우엔 미리 생성된 컬럼을 지정해주고 싶었기 때문에 다음과 같이 삽입해야 했다.
 
     add_foreign_key :meal_meet_ups, :users, column: :admin_id
-    
+
 외부 키를 지정해주는 마이그레이션 파일은 다음과 같이 작성되었다.
 
 ```ruby
@@ -71,7 +71,7 @@ end
 ## 컨트롤러 작성
 
     rails g controller MealMeetUp create update
-    
+
 현재 시점에서 첫 번째로 구현하려는 기능은 MealMeetUp api이다. 새 MealMeetUp 생성과 수정을 구현할 예정인데
 json으로만 데이터를 주고받을 예정이니 `routes.rb`에 디폴트 포맷을 지정해주기로 했다.
 
@@ -111,7 +111,7 @@ json으로만 데이터를 주고받을 예정이니 `routes.rb`에 디폴트 �
     - `messenger_room_id`
     - 앞서 생성된 user의 id를 `admin_id`로 지정
     - status는 null로 두고, null인 경우는 최초 생성인 것으로 간주하도록 하려고 했으나, 아무래도 "​created"라는 상태를 지정해 두는 것이 나아 보인다.
-    
+
 CodeTable을 작성하면서 한 가지 실수한 점이 있는데, 컬럼명에 'type'이라는 이름을 쓰면 레일즈에 기본적으로 정의되어있는 type과 충돌이 난다. 그래서 code_type으로 컬럼명을 변경하였다.
 
 각각 코드가 무엇을 의미하는지는 code_table.rb에 주석으로 달기로 하였다.
@@ -142,7 +142,7 @@ end
 인증 정보의 유효성 고려하다보니 깜빡한 것이, 이메일 유효성을 고려하지 않았다.
 
     VALID_EMAIL_ADDRESS = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    
+
 M.Hartl의 튜토리얼에서 가져온 이 정규표현식으로 메서드를 만들어서 검증하기로 했다.
 
 ## MealMeetUp Update
@@ -197,7 +197,7 @@ end
 마지막 줄에 최종적으로 원하는 데이터를 출력하는 부분이 애매한데, MeetUp 객체 생성/수정에 필요 없는 정보들이 너무 많았다. 그래서 조금 수정을 가했다.
 
     params.merge(additional_data).reject { |key| ['email', 'messenger', 'status', 'messenger_user_id'].include?(key) }
-    
+
 거의 다 된거 같은게 갈수록 태산처럼 보인다. 이번에는 messenger_user_id가 UserMessenger 모델에 들어가야하는 값이라는걸 깨달았다. 당장 어디다 넣어야 할지도 모르겠는데.. 일단 `get_more_info` 메서드를 조금 수정하여 처음 생성하는 MealMeetUp일 경우 새로운 UserMessenger 객체를 생성하는 것 까지 진행했다.
 
 지금까지 작업하여 돌아가기는 하지만 영 못마땅한 부분이 많다. 특히 반복적인 부분과 매끄럽게 보이지 않는 부분들이 너무 많은데, 본격적으로 수정을 하면 어디부터 손을 대야할지 해봐야 알 것이다. (루보캅 테스트 통과 못한 부분이 무려 22개)

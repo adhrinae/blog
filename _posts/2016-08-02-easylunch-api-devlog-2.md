@@ -2,7 +2,7 @@
 layout: post
 title: Easylaunch Api 서버 제작기 - 2
 categories:
-  - Ruby on Rails
+  - Rails
   - Rorlab Workshop
 ---
 
@@ -97,7 +97,7 @@ class MembersController < ApplicationController
 
     params.permit(:id => [])
 
-service_uid로 컬럼명을 수정하면서 생긴 오류들을 잡아주고 차근차근 진행하고 있다가 확실히 response의 `member_ids` 를 제대로 MealMeetUp에 엮여있는 유저들만 가져오는게 맞다는 생각이 들었다.  
+service_uid로 컬럼명을 수정하면서 생긴 오류들을 잡아주고 차근차근 진행하고 있다가 확실히 response의 `member_ids` 를 제대로 MealMeetUp에 엮여있는 유저들만 가져오는게 맞다는 생각이 들었다.
 결국 가져와야 하는 것은
 
 **MealMeetUp에 속한 Task들 -> 각 Task를 가지고 있는 MealLog -> MealLog를 소유하고 있는 User의 service_uid** 인 것이다.
@@ -112,10 +112,10 @@ DB를 리셋하고 먼저 MealMeetUp을 하나 생성한 뒤에 유저 추가 �
 - 메서드 이름은 다른사람이 이름만 보아도 무엇을 하는 작업인지 알 수 있어야 한다
 - 맴버 추가하는 일련의 과정을 담은 `add_flow` 메서드를 user모델에 정의해서 쓸 필요가 있겠다 (`init_member` 같은 이름으로)
 
-대개 리펙토링을 하면서 처리해야 하는 부분들이지만, 멤버 추가를 유저 모델에 정의하는 지금이라도 처리해야할 필요가 있다.  
+대개 리펙토링을 하면서 처리해야 하는 부분들이지만, 멤버 추가를 유저 모델에 정의하는 지금이라도 처리해야할 필요가 있다.
 기존에 MealMeetUp을 만들 때 자동으로 어드민 유저를 생성하는데, 어드민 유저도 같은 방에 포함되는 유저로서 MealLog, Messenger, Task 등록 등의 작업을 해 주어야 한다고 생각하기 때문이다.
 
-그런데 지금은 MealMeetUp 생성 당시 어드민 유저의 service_uid가 없기 때문에, 생성을 하자니 조금 애매한 부분이 있다.  
+그런데 지금은 MealMeetUp 생성 당시 어드민 유저의 service_uid가 없기 때문에, 생성을 하자니 조금 애매한 부분이 있다.
 먼저 떠오르는 생각으로는 MealMeetUp 생성만 하고 어드민은 따로 Members 추가 시에 지정하는 방법이 있겠다. 아니면 처음 MealMeetUp 생성때부터 어드민이 될 사람의 service_uid를 받아야 한다.
 
 *(추가)* 그냥 MealMeetUp 생성시에 어드민이 될 사람의 service_uid도 받는 방식으로 수정을 하기로 하였다.
@@ -213,5 +213,5 @@ class MealMeetUpController < ApplicationController
 
 ```
 
-이렇게 수정하여 먼저 중복된 meetup이 있는지 확인을 하고, 없으면 생성을 하는 과정을 거치도록 수정하니 잘 작동하였다.  
+이렇게 수정하여 먼저 중복된 meetup이 있는지 확인을 하고, 없으면 생성을 하는 과정을 거치도록 수정하니 잘 작동하였다.
 앞으로도 수정할 부분은 많이 있을 것이지만, 한줄 한줄 코드를 작성할 때 조금 더 과정에 대해 심혈을 기울여 생각할 필요성을 크게 느꼈다.
