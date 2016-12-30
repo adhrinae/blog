@@ -8,9 +8,9 @@ categories:
   - Testing
 ---
 
-- 본 포스트는 [Luca Guidi의 포스팅을](https://lucaguidi.com/2016/12/27/isolate-global-state.html) 번역한 글입니다
-- 문제를 설명하는데 나온 하나미(Hanami)에 대해서는 [이 포스팅](https://emaren84.github.io/blog/archivers/hanami-introduction)을 참조해주세요
-- 전문 번역이 아니기에 부족한 표현이나 오역은 언제든지 지적해주세요
+- **본 포스트는 [Luca Guidi의 포스팅을](https://lucaguidi.com/2016/12/27/isolate-global-state.html) 번역한 글입니다**
+- **문제를 설명하는데 나온 하나미(Hanami)에 대해서는 [이 포스팅](https://emaren84.github.io/blog/archivers/hanami-introduction)을 참조해주세요**
+- **전문 번역이 아니기에 부족한 표현이나 오역은 언제든지 지적해주세요**
 
 ---
 
