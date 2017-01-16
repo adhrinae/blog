@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 테스트가 없는 앱을 이용하여 TDD를 배우는 방법
+title: (번역) 테스트가 없는 앱을 이용하여 TDD를 배우는 방법
 categories: 
   - Ruby
   - Rails
