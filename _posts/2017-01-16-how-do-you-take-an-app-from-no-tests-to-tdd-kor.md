@@ -5,7 +5,7 @@ categories:
   - Translation
   - Ruby
   - Rails
-  - TDD
+  - Testing
 ---
 
 - **이 번역글은 [Justin Weiss의 포스팅](http://www.justinweiss.com/articles/how-do-you-take-an-app-from-test-less-to-tdd/)을 번역한 글입니다**
