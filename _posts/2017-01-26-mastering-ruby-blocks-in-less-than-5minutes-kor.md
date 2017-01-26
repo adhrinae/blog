@@ -1,11 +1,9 @@
 ---
-​---
 layout: post
 title: (번역) 루비 블록을 5분 이내에 마스터하기
-categories: 
+categories:
   - Translation
   - Ruby
-​---
 ---
 
 - **이 포스팅은 [Cezar Halmagean](https://twitter.com/chalmagean)의 [포스팅](https://mixandgo.com/blog/mastering-ruby-blocks-in-less-than-5-minutes)을 번역한 글입니다**
@@ -51,7 +49,7 @@ categories:
 
 이 두 가지 작성 방법은 정확하게 똑같이 작동합니다. 그래서 어느 방법을 고를 지는 여러분의 선택에 달려 있습니다. 일반적인 스타일 가이드에 의하면 가독성을 위해 코드가 한줄 이상 넘어가면 `do` ~ `end` 를 이용하여 작성하는 것이 좋습니다.
 
-멀티 라인 블록의 기본적인 예시는 이렇습니다: `[1, 2, 3].each do |n| puts "Number #{n}" end` 
+멀티 라인 블록의 기본적인 예시는 이렇습니다: `[1, 2, 3].each do |n| puts "Number #{n}" end`
 
 이 블록이 멀티 라인 블록이라 불리는 이유는 한 줄 이상으로 코드가 작성되어서가 아니고 인라인 블록이 아니기 때문입니다. 같은 예시를 인라인으로 작성할 수도 있습니다.
 
@@ -213,7 +211,7 @@ end
 ```ruby
 class Car
   attr_accessor :color, :doors
-  
+
   def initialize
     yield(self)
   end
