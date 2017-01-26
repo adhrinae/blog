@@ -60,6 +60,7 @@ categories:
 두 가지 버전 모두 1, 2, 3을 순서대로 출력할 겁니다. 파이프 사이에 있는 소문자 n(`|n|`)은 **블록 매개변수(block parameter)** 라고 불리고, 이 예시에서는 배열 안에 있는 각각의 번호가 순서대로 나오게됩니다. 그래서 처음 반복 시에 `n` 의 값은 1이 되고, 두번째 반복에서는 2가 되고 그 다음엔 3이 됩니다.
 
 ```
+# 결과
 Number 1
 Number 2
 Number 3
@@ -83,6 +84,7 @@ my_method do
   puts "reached yield"
 end
 ```
+
 
 ```
 # 결과
@@ -130,6 +132,7 @@ end
 my_method { puts "Hello!" }
 ```
 
+
 ```
 # 결과
 #<Proc:0x0000010124e5a8@tmp/example.rb:6>
@@ -154,6 +157,7 @@ my_method do
   2
 end
 ```
+
 
 ```
 # 결과
@@ -195,6 +199,7 @@ my_map([1, 2, 3]) do |number|
 end
 ```
 
+
 ```
 # 결과
 [2, 4, 6]
@@ -224,6 +229,7 @@ end
 
 puts "My car's color is #{car.color} and it's got #{car.doors} doors."
 ```
+
 
 ```
 # 결과
@@ -306,6 +312,7 @@ end
 Note.create { "Foo" }
 ```
 
+
 ```
 # 결과
 Connecting to the database...
@@ -333,6 +340,7 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].select(&3)
 puts numbers
 ```
 
+
 ```
 # 결과
 3
@@ -344,8 +352,8 @@ puts numbers
 
 ```ruby
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].select do |n|
-  			n % 3 == 0
-		  end
+      			n % 3 == 0
+    		  end
 ```
 
 
