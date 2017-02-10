@@ -1,0 +1,113 @@
+// Atom One-Dark theme
+.highlight, pre.highlight {
+  background: #282c34;
+  color: #abb2bf;
+}
+
+.highlight {
+  pre, .hll {
+    background: #282c34;
+  }
+  .c {
+    color: #5c6370;
+    font-style: italic;
+  }
+  .err {
+    color: #960050;
+    background-color: #1e0010;
+  }
+  .k {
+    color: #c678dd;
+  }
+  .l {
+    color: #98c379;
+  }
+  .n, .o, .p {
+    color: #abb2bf;
+  }
+  .cm, .cp, .c1, .cs {
+    color: #5c6370;
+    font-style: italic;
+  }
+  .ge {
+    font-style: italic;
+  }
+  .gs {
+    font-weight: 700;
+  }
+  .kc, .kd, .kn, .kp, .kr, .kt {
+    color: #c678dd;
+  }
+  .ld {
+    color: #98c379;
+  }
+  .m {
+    color: #d19a66;
+  }
+  .s {
+    color: #98c379;
+  }
+  .na {
+    color: #d19a66;
+  }
+  .nb, .nc, .no, .nd, .ni, .ne {
+    color: #e5c07b;
+  }
+  .nf {
+    color: #abb2bf;
+  }
+  .nl {
+    color: #e5c07b;
+  }
+  .nn, .nx {
+    color: #abb2bf;
+  }
+  .py {
+    color: #e5c07b;
+  }
+  .nt {
+    color: #e06c75;
+  }
+  .nv {
+    color: #e5c07b;
+  }
+  .ow {
+    font-weight: 700;
+  }
+  .w {
+    color: #f8f8f2;
+  }
+  .mf, .mh, .mi, .mo {
+    color: #d19a66;
+  }
+  .sb, .sc, .sd, .s2, .se, .sh, .si, .sx {
+    color: #98c379;
+  }
+  .sr {
+    color: #56b6c2;
+  }
+  .s1 {
+    color: #98c379;
+  }
+  .ss {
+    color: #56b6c2;
+  }
+  .bp, .vc, .vg {
+    color: #e5c07b;
+  }
+  .vi {
+    color: #e06c75;
+  }
+  .il {
+    color: #d19a66;
+  }
+  .gu {
+    color: #75715e;
+  }
+  .gd {
+    color: #f92672;
+  }
+  .gi {
+    color: #a6e22e;
+  }
+}
