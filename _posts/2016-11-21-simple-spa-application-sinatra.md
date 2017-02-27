@@ -65,11 +65,11 @@ end
 
 당연 그 전에 시나트라 젬은 설치되어 있어야 한다.
 
-  # Install sinatra gem
-  $ gem install sinatra
+    # Install sinatra gem
+    $ gem install sinatra
 
-  # Launch the application
-  $ ruby myapp.rb  # View at http://localhost:4567
+    # Launch the application
+    $ ruby myapp.rb  # View at http://localhost:4567
 
 
 
@@ -98,7 +98,7 @@ run Sinatra::Application
 
 그리고 `rackup` 커맨드로 애플리케이션을 실행시킨다.
 
-  $ rackup -p 4000
+    $ rackup -p 4000
 
 기본으로 설정된 애셋 파일은 `/public` 폴더에, 뷰 파일을 `/views` 파일에 랜더링된다고 적혀있으니 컨트롤러인 `app.rb` 파일은 루트에 두고 필요한 폴더를 작성하고 자바스크립트와 CSS 파일은 `public` 폴더에, ERB파일은 `views` 폴더에 작성하였다.
 
