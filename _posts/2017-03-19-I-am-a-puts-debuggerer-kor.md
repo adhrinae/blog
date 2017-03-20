@@ -167,7 +167,7 @@ ArgumentError (wrong number of arguments (given 1, expected 0)):
 
 ```ruby
 def index
-  method = Kernal.instance_method(:method)
+  method = Kernel.instance_method(:method)
   p method.bind(request).call(:headers).source_location
   @users = User.all
 end
@@ -186,7 +186,7 @@ Processing by UsersController#index as */*
 
 ```ruby
 def index
-  method = Kernal.instance_method(:method)
+  method = Kernel.instance_method(:method)
   p method.bind(request).call(:method).source_location
   @users = User.all
 end
