@@ -13,7 +13,7 @@ categories:
 
 ---
 
-저는 콘솔 디버거입니다*(역주1: 원 제목의 'puts debuggerer'를 의역하였습니다. 루비의 puts는 전달받은 인자를 표준 출력(stdout)해주는 메서드입니다. 이후에도 puts debugging은 모두 콘솔 디버깅으로 번역하겠습니다)*. 저는 진짜 디버거( `pry` , `byebug` 등)를 사용하는 사람들을 폄하하고자 이 이야기를 하는게 아닙니다. 진짜 디버거는 아주 좋다고 생각하지만, 저는 하나라도 제대로 배울 시간을 들이지 못했습니다. 매번 한 개라도 써보려고 하다가 결국엔 한동안 사용하지 않고, 다시 사용방법을 배워야만 했습니다. 어쨌든, 저는 여러분에게 콘솔 디버깅을 할 때 사용하는 트릭을 좀 알려드리고자 합니다. 저는 이 트릭들을 무언가가 어떻게 작동하는지 이해가 되지 않을때나 작동 원리를 더 알고싶을 때 사용합니다. 아래에 이야기하게 될 대부분의 것들은 *절대로* 최선의 방법(best practice)가 아니며 여러분들은 디버깅 세션이 끝나면 절대 이 코드들을 남겨두어선 안됩니다. 그러나 여러분이 **무엇을 디버깅하던지** 아주 유용하다고 생각합니다. 정말로 뭐든지요. 전역 변수, 메서드 재정의, 조건문 추가, 불러오기 경로 수정, 몽키 패칭, 콜 스택 출력 등, **뭐든지요**.
+저는 콘솔 디버거입니다 *(역주1: 원 제목의 'puts debuggerer'를 의역하였습니다. 루비의 puts는 전달받은 인자를 표준 출력(stdout)해주는 메서드입니다. 이후에도 puts debugging은 모두 콘솔 디버깅으로 번역하겠습니다)*. 진짜 디버거( `pry` , `byebug` 등)를 사용하는 사람들을 폄하하고자 이 이야기를 하는게 아닙니다. 진짜 디버거는 아주 좋다고 생각하지만, 저는 하나라도 제대로 배울 시간을 들이지 못했습니다. 매번 한 개라도 써보려고 하다가 결국엔 한동안 사용하지 않고, 다시 사용방법을 배워야만 합니다. 어쨌든, 이번 기회에 여러분에게 콘솔 디버깅을 할 때 사용하는 트릭을 좀 알려드리고자 합니다. 저는 이 트릭들을 무언가가 어떻게 작동하는지 이해가 되지 않을때나 작동 원리를 더 알고싶을 때 사용합니다. 아래에 이야기하게 될 대부분의 것들은 *절대로* 최선의 방법(best practice)가 아니며 여러분들은 디버깅 세션이 끝나면 절대 이 코드들을 남겨두어선 안됩니다. 그러나 여러분이 **무엇을 디버깅하던지** 아주 유용하다고 생각합니다. 정말로 뭐든지요. 전역 변수, 메서드 재정의, 조건문 추가, 불러오기 경로 수정, 몽키 패칭, 콜 스택 출력 등 **뭐든지요**.
 
 저는 이 포스트에서 최대한 실제 접하는 예시들을 보여드리고 싶었습니다. 하지만 대부분의 예시들은 제가 레일즈의 보안 이슈를 디버깅하려고 할 때 나온 것들이라서, 이 코드의 테크닉은 재활용하셔도 좋지만 **코드 전체를 그대로 쓰시면 안됩니다.** 제가 디버깅하려는 코드들은 정상적으로 동작하지 않습니다. 거기다 이 코드를 사용하시는걸 원치도 않습니다.
 
@@ -167,7 +167,7 @@ ArgumentError (wrong number of arguments (given 1, expected 0)):
 
 ```ruby
 def index
-  method = Kernel.instance_method(:method)
+  method = Kernal.instance_method(:method)
   p method.bind(request).call(:headers).source_location
   @users = User.all
 end
@@ -186,7 +186,7 @@ Processing by UsersController#index as */*
 
 ```ruby
 def index
-  method = Kernel.instance_method(:method)
+  method = Kernal.instance_method(:method)
   p method.bind(request).call(:method).source_location
   @users = User.all
 end
@@ -243,7 +243,7 @@ activerecord-3.0.0/lib/active_record/connection_adapters/abstract_adapter.rb:202
 	from script/rails:6:in `<main>'
 ```
 
-여러분이 추적 내역(backtrace) 을 읽어보셨다면*(역주2: backtrace하면 역추적 이라는 말이 직역하기는 좋지만, 보통 루비에서 backtrace를 떠올릴 때 콘솔에 뜨는 십수 줄의 추적 내역이 연상될 때가 많아서 추적 내역으로 번역하였습니다)*, 예외가 [abstract_adapter.rb의 202번째 줄](https://github.com/rails/rails/blob/9891ca8/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb#L202)에서 발생했다는 것을 알 수 있습니다. 그러나 이 코드는 [예외를 구출한 뒤(rescuing an exception)에 다시 예외를 일으키도록](https://github.com/rails/rails/blob/9891ca8/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb#L199-L202) 되어있는게 보일 겁니다. 그렇다면 실제로는 어디서 예외가 일어난 걸까요? 정답을 찾기 위해 `puts` 를 사용하거나 루비의 `-d` 플래그를 사용할 수 있습니다.
+여러분이 추적 내역(backtrace) 을 읽어보셨다면 *(역주2: backtrace하면 역추적 이라는 말이 직역하기는 좋지만, 보통 루비에서 backtrace를 떠올릴 때 콘솔에 뜨는 십수 줄의 추적 내역이 연상될 때가 많아서 추적 내역으로 번역하였습니다)*, 예외가 [abstract_adapter.rb의 202번째 줄](https://github.com/rails/rails/blob/9891ca8/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb#L202)에서 발생했다는 것을 알 수 있습니다. 그러나 이 코드는 [예외가 발생한 상황에서 다시 예외를 일으키도록](https://github.com/rails/rails/blob/9891ca8/activerecord/lib/active_record/connection_adapters/abstract_adapter.rb#L199-L202) 되어있는게 보일 겁니다. 그렇다면 실제로는 어디서 예외가 일어난 걸까요? 정답을 찾기 위해 `puts` 를 사용하거나 루비의 `-d` 플래그를 사용할 수 있습니다.
 
 ```
 [aaron@TC okokok (master)]$ bundle exec ruby -d script/rails runner test.rb
@@ -332,7 +332,7 @@ def zot; Object.new	end
 foo
 ```
 
-이전에 "어디에 문제가 있는진 알겠는데, 어떻게 거기까지 가야할지 모르겠다" 파트에서 `caller` 를 사용하는 방법, "wtf  트릭"*(역주3: 글쓴이는 해당 방법을 소개할 때 Vim 단축키를 `<leader>wtf` 으로 설정하였습니다. 그래서 이를 "wtf trick"으로 명명한 것으로 보입니다)*을 보여드렸습니다.  여기서 저는 `x` 라는 값이 어떻게 할당되었는지 신경쓰였는데요, `foo` 메서드를 따라가다보면 `baz` 메서드에서 값을 가져오는 것을 볼 수 있습니다. 거대한 코드 베이스에서는 형제 트리에서 모든 호출과 로직을 따라가는게 아주 어렵습니다(코드를 자료구조의 그래프라고 생각한다면, `foo` 메서드는 두 개의 자손이 있는 겁니다. `baz` 와 `bar` 이죠. 그래서 `baz`가 `bar` 의 형제라고 여길 수 있습니다). 저는 게으르기 때문에 객체가 어디서 왔는지 찾기 위해 모든 메서드를 뒤지고 싶지 않았습니다. 그래서 저는 루비의 객체 할당 추적기(object allocation tracer)를 사용하는걸 좋아합니다. 루비의 할당 추적기는 루비 2.1버전부터 사용할 수 있습니다(확실한 것은 아닙니다). 제가 이 방법을 사용할 때는 가능한 빨리 `require` 한 뒤에 활성화합니다. 그러면 제가 찾고자 하는 할당 위치를 찾을 수 있지요.
+이전에 "어디에 문제가 있는진 알겠는데, 어떻게 거기까지 가야할지 모르겠다" 파트에서 `caller` 를 사용하는 방법, "wtf  트릭" *(역주3: 글쓴이는 해당 방법을 소개할 때 Vim 단축키를 `<leader>wtf` 으로 설정하였습니다. 그래서 이를 "wtf trick"으로 명명한 것으로 보입니다)*을 보여드렸습니다.  여기서 저는 `x` 라는 값이 어떻게 할당되었는지 신경쓰였는데요, `foo` 메서드를 따라가다보면 `baz` 메서드에서 값을 가져오는 것을 볼 수 있습니다. 거대한 코드 베이스에서는 형제 트리에서 모든 호출과 로직을 따라가는게 아주 어렵습니다(코드를 자료구조의 그래프라고 생각한다면, `foo` 메서드는 두 개의 자손이 있는 겁니다. `baz` 와 `bar` 이죠. 그래서 `baz`가 `bar` 의 형제라고 여길 수 있습니다). 저는 게으르기 때문에 객체가 어디서 왔는지 찾기 위해 모든 메서드를 뒤지고 싶지 않았습니다. 그래서 저는 루비의 객체 할당 추적기(object allocation tracer)를 사용하는걸 좋아합니다. 루비의 할당 추적기는 루비 2.1버전부터 사용할 수 있습니다(확실한 것은 아닙니다). 제가 이 방법을 사용할 때는 가능한 빨리 `require` 한 뒤에 활성화합니다. 그러면 제가 찾고자 하는 할당 위치를 찾을 수 있지요.
 
 ```ruby
 require 'objspace'
@@ -356,20 +356,20 @@ foo
 프로그램을 실행하면 이런 결과를 얻습니다.
 
 ```
-[aaron@TC tlm.com (master)]$ ruby x.rb 
+[aaron@TC tlm.com (master)]$ ruby x.rb
 {"x.rb"=>14}
-[aaron@TC tlm.com (master)]$ 
+[aaron@TC tlm.com (master)]$
 ```
 
 `x` 객체가 해당 파일의 14번째 줄에 있다는 것을 알게 되었습니다. 그러면 해당 라인으로 가서 "wtf 트릭" 을 반복하거나 프로그램에 무슨 문제가 있는지 발견할 때 까지 이 방법을 반복합니다.
 
-저는 보통 객체 추적을 가능한 빠르게(ASAP) 시작합니다. 제 객체가 어디에 할당되었는지 모르니까요. 이런 추적은 프로그램의 속도를 떨어뜨리지만, 디버깅 중에는 신경쓸 필요가 없습니다.
+저는 보통 객체 추적을 가능한 빠르게 시작합니다. 제 객체가 어디에 할당되었는지 모르니까요. 이런 추적은 프로그램의 속도를 떨어뜨리지만, 디버깅 중에는 신경쓸 필요가 없습니다.
 
 
 
 ## 나는 `require` 를 진짜 진짜 빨리 하고 싶어
 
-바로 위에 보여드린 기술은 오로지 객체가 `trace_object_allocations_start` 메서드가 호출되고 난 뒤에 할당된 이후의 정보만 제공합니다. 만약 객체가 파일이 `require` 되는 순간에 할당되고, 도대체 무슨 파일이고 *어디에 있는지* 모를 때가 있다면,  프레임워크 안에 있는 어떤 파일이라도 로드되기 전에 코드를 좀 실행시킬 필요가 있습니다. 이럴 때 저는 `-r` 플래그를 사용한 뒤 스크립트를 작성합니다.
+바로 위에 보여드린 기술은 오로지 객체가 `trace_object_allocations_start` 메서드가 호출되고 난 뒤에 할당된 이후의 정보만 제공합니다. 파일이 `require` 되는 순간에 객체가 할당되어서, 도대체 무슨 파일이고 *어디에 있는지* 모를 때가 있습니다. 그래서  프레임워크 안에 있는 어떤 파일이라도 로드되기 전에 코드를 좀 실행시킬 필요가 있습니다. 이럴 때 저는 `-r` 플래그를 사용한 뒤 스크립트를 작성합니다.
 
 우리가 `User::BLACKLISTED_CLASS_METHODS` 의 할당 위치를 찾는 코드를 작성했다고 칩시다.
 
@@ -382,7 +382,7 @@ ActiveRecord::Base.connection.instance_eval do
   create_table :users
 end
 
-clas user < ActiveRecord::Base; end
+class User < ActiveRecord::Base; end
 p ObjectSpace.allocation_sourcefile(User::BLACKLISTED_CLASS_METHODS) => ObjectSpace.allocation_sourceline(User::BLACKLISTED_CLASS_METHODS)
 ```
 
@@ -398,7 +398,7 @@ ObjectSpace.trace_object_allocations_start
 ```
 [aaron@TC tlm.com (master)]$ ruby -I. -ry x.rb
 {"/Users/aaron/.rbenv/versions/ruby-trunk/lib/ruby/gems/2.4.0/gems/activerecord-5.0.0.beta1/lib/active_record/attribute_methods.rb"=>35}
-[aaron@TC tlm.com (master)]$ 
+[aaron@TC tlm.com (master)]$
 ```
 
 인자들을 찬찬히 살펴보면 `-I.` 는 ". 를 불러오기 경로로 추가하고", `-ry` 는 `require 'y'` 와 같으며, 이후에 `x.rb` 를 실행하는 겁니다. 그러니 `.` 가 불러오기 경로로 추가되었고, `x.rb` 가 실행되기도 전에 `y.rb` 파일이 `require` 되었습니다. 그 결과로 `BLACKLISTED_CLASS_METHODS` 가 `attribute_methods.rb` 의 35번째 줄에 에 할당되어 있다는 사실을 알 수 있습니다. 만약 서브 프로세스 안에서 실행되는 코드에 이 기술을 적용하고자 한다면 `RUBYOPT` 를 함께 쓰면 됩니다.
@@ -416,9 +416,9 @@ $ RUBYOPT='-I. -ry' rake test
 ```ruby
 def initialize
   super()
-  
+
   @cv = new_cond
-  
+
   @sharing = Hash.new(0)
   @sharing.freeze
   @waiting = {}
@@ -548,7 +548,7 @@ app/controllers/users_controller.rb:9:in `index'
 
 ## 특정한 시간에만 언제 메서드가 실행되는지 알고 싶다
 
-일정 시간 뒤에 메서드가 언제 실행되었는지 알고 싶을 때가 있습니다. 저는 애플리케이션이 *구동된 뒤에*  `starrt_exclusive` 메서드가 언제 호출되는지 알고 싶었습니다. 이럴 때 위에 보여드린 `trap` 트릭과 전역 변수를 조합하여 해결했습니다.
+일정 시간 뒤에 메서드가 언제 실행되었는지 알고 싶을 때가 있습니다. 저는 애플리케이션이 *구동된 뒤에*  `start_exclusive` 메서드가 언제 호출되는지 알고 싶었습니다. 이럴 때 위에 보여드린 `trap` 트릭과 전역 변수를 조합하여 해결했습니다.
 
 먼저 `start_exclusive` 를 이렇게 수정했습니다.
 
@@ -579,8 +579,6 @@ trap(:INFO) {
 ## 끝
 
 이게 제가 지금 생각해 낼 수 있는 방법의 전부입니다. 그리고 [Richard의 puts 디버깅에 관한 글도 읽어보세요](http://www.schneems.com/2016/01/25/ruby-debugging-magic-cheat-sheet.html). 좋은 하루 되시길. 끝.
-
-
 
 ---
 
