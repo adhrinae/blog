@@ -81,7 +81,7 @@ categories:
 
 ## yarn init
 
-현재로서 `npm` 보다 `yarn` 이 더 나아보이니까 한번 적용해보았다. 이번 프로젝트와 관련된 모듈들은 다음의 커맨드로 설치하면 된다.
+현재로서 `npm` 보다 `yarn` 이 더 나아보이니까 한번 적용해보았다. 이번 프로젝트와 관련된 모듈들은 다음의 커맨드로 설치하면 된다.
 
 ```
 # 필수 패키지
@@ -203,7 +203,7 @@ if (process.env.NODE_ENV === 'production') {
 
 최신 버전 크롬은 ES6 문법 대부분을 지원하기 때문에 별 신경을 쓰지 않아도 되곘지만.. 그래도 바벨을 적용해두는게 좋을 것이다. 
 
-위에서 필요한 모듈은 설치되어있으니 `.babelrc` 파일부터 지정해준다.
+위에서 필요한 모듈은 설치되어있으니 `.babelrc` 파일부터 지정해준다.
 
 ```json
 // .babelrc
@@ -285,6 +285,7 @@ module.exports = {
 먼저 필요한 모듈을 설치한다.
 
 	$ yarn add css-loader extract-text-webpack-plugin --dev
+	
 그리고 설정파일에 CSS 관련 모듈 규칙과 플러그인을 추가해준다.
 
 ```javascript
