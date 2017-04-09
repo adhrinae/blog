@@ -84,10 +84,10 @@ categories:
 현재로서 `npm` 보다 `yarn` 이 더 나아보이니까 한번 적용해보았다. 이번 프로젝트와 관련된 모듈들은 다음의 커맨드로 설치하면 된다.
 
 ```
-# 필수 패키지
+# 필수 모듈
 $ yarn add axios vue
 
-# 개발용 패키지
+# 개발용 모듈
 $ yarn add webpack babel-core babel-loader babel-preset-es2015 --dev
 ```
 
@@ -118,7 +118,7 @@ module.exports = {
 
 	$ node_modules/.bin/webpack --hide-modules
 	# 계속 변화를 감지하기 위한 커맨드는 다음과 같다.
-	$ node_moduels/.bin/webpack --hide-modules --watch
+	$ node_modules/.bin/webpack --hide-modules --watch
 
 하지만 저 커맨드를 굳이 매번 입력해 줄 필요는 없다. `package.json` 파일에 스크립트를 설정해줄 수 있다.
 
