@@ -68,7 +68,7 @@ C 버전의 코드는 어셈블리로 작성된 코드보다 훨씬 많은 정�
 
 우리는 인자 이름을 `mass_kilograms`, `radius_meters` 같은 이름으로 바꾸는 간단한 트릭을 써 볼수 있지만, 언어 자체에서 '이 함수는 반드시 킬로그램과 미터를 입력해야한다'고 보장해주는 장치가 없습니다.
 
-이제 더 복잡한 타입을 지원하는 언어의 예를 살펴보겠습니다. 저는 OCaml을 사용하겠지만 대부분의 ML-계열 언어들(하스켈, 스위프트 등)은 이런 기능을 지원합니다. ([그리고 F#은 아예 단위에 대한 일급 클래스 지원을 하고 있습니다.](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/units-of-measure))
+이제 더 복잡한 타입을 지원하는 언어의 예를 살펴보겠습니다. 저는 OCaml을 사용하겠지만 대부분의 ML-계열 언어들(하스켈, 스위프트 등)은 이런 기능을 지원합니다. ([그리고 F#은 아예 단위에 대해 가장 높은 우선 순위로 지원을 하고 있습니다.](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/units-of-measure))
 
 ```ocaml
 let gravity_constant = 6.67408e-11
