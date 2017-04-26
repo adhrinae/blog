@@ -7,7 +7,7 @@ categories:
   - Vue.js
 ---
 
-
+- Source Code: [Github](https://github.com/emaren84/moneybook_api)
 
 ## 들어가며
 
@@ -241,7 +241,7 @@ end
 
 먼저 유효성 검사부터 만들겠습니다. 하나미의 유효성 검사는 모델에서 수행하는 게 아니라 각 액션에서 수행합니다. (공통된 유효성 검사를 모듈화할 수도 있습니다)
 
-**작성되는 코드는 모두 테스트를 먼저 작성하고 진행하지만, 글에서 모두 보여드리지 않겠습니다. 자세한 내용은 Github에 올라와 있는 소스코드를 살펴봐 주세요.**
+**작성되는 코드는 모두 테스트를 먼저 작성하고 진행하지만, 글에서 모두 보여드리지 않겠습니다. 자세한 내용은 [Github에 올라와 있는 소스코드](https://github.com/emaren84/moneybook_api)를 살펴봐 주세요.**
 
 ```ruby
 # apps/api/controllers/auth/sign_up.rb
