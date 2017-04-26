@@ -42,11 +42,15 @@ categories:
 
 먼저 하나미 젬을 설치합니다.
 
-	gem install hanami
+```
+gem install hanami
+```
 
 설치 된 이후에 프로젝트는 원하시는 이름으로 설치하시면 됩니다. 하나미는 SQLite, MySQL, PostgreSQL 등을 지원하지만, 기본적으로 PostgreSQL을 권장합니다. 또한 테스팅 프레임워크도 처음 프로젝트를 설정할 때 Minitest, RSpec 중에서 고르실 수 있습니다. 제가 아직 RSpec은 커녕 TDD를 잘 못하기 때문에 Minitest로 진행해보겠습니다. 
 
-	hanami new moneybook-api --database=postgres --test=minitest
+```
+hanami new moneybook-api --database=postgres --test=minitest
+```
 
 생성된 프로젝트에서 젬파일을 살펴보시면 꽤 간단합니다.
 
@@ -119,7 +123,9 @@ gem 'jwt'
 
 먼저 사용자 정보를 저장하기 위한 모델을 생성하겠습니다. 간단히 이메일과 패스워드를 저장하는 테이블을 만들면 되겠네요.
 
-	bundle exec hanami generate model user
+```
+bundle exec hanami generate model user
+```
 
 앞으로 모든 하나미 커맨드 앞에는 `bundle exec`  이 붙을 예정입니다. 앞으로 하나미를 자주 쓰게 되면 `bashrc` 나  `zshrc` 에 alias 지정을 해 두는걸 추천합니다.
 
@@ -144,17 +150,20 @@ end
 
 방법에 따라서는 이메일 컬럼만 있어도 충분히 JWT 인증을 구현할 수 있다는데 아직 잘 모르겠습니다. 이제 테이블 생성을 위해 마이그레이션을 실행하겠습니다.
 
-	bundle exec hanami db create # 먼저 데이터베이스 생성부터
-	bundle exec hanami db migrate
-
+```
+bundle exec hanami db create # 먼저 데이터베이스 생성부터
+bundle exec hanami db migrate
+```
 
 
 ### 사용자 등록 액션
 
 이제 사용자를 등록하는 액션을 생성하겠습니다. 이후에 JWT 인증하는 과정을 덧붙일 예정입니다.
 
-	bundle exec hanami generate action api auth#sign_in --skip-view
-	bundle exec hanami generate action api auth#sign_up --skip-view
+```
+bundle exec hanami generate action api auth#sign_in --skip-view
+bundle exec hanami generate action api auth#sign_up --skip-view
+```
 
 action 뒤에 `api` 는 제가 사용할 앱 이름입니다. 기본값은 web으로 되어 있지만, [하나미 가이드의 Command Line 부분을 참고하시면](http://hanamirb.org/guides/command-line/generators/) 다른 앱을 생성하거나 삭제하는 등 액션을 실행할 수 있습니다.
 
@@ -327,7 +336,11 @@ end
 
 그런데 액션 부분에 `result.user.show_info.to_json`  이라고 되어있는 부분이 있습니다. `to_json` 은 리턴값이 JSON이어야 되니까 그렇다 치고, `show_info` 는 어디에 있는 녀석일까요? 방금까지 우리는 사용자를 생성했습니다. 그리고 생성된 결과값이 User Entity(엔티티)인데, 엔티티에 메서드를 정의하여 원하는 정보를 가공하여 보여줄 수 있도록 만든 것입니다. 콘솔에서 한번 확인해 보겠습니다.
 
-	bundle exec hanami console
+```
+bundle exec hanami console
+
+```
+
 
 ```
 [2] pry(main)> UserRepository.new.create(email: 'foo@baz.com', password_digest: 'some secret')
@@ -480,7 +493,9 @@ RESTful API 라면 보통 사용자가 가지고 있는 레코드를 표현해�
 
 일단 레코드 모델과 레코드를 생성하는 액션을 만들고 나서, 토큰 인증 과정을 덧붙이도록 하겠습니다.
 
-	bundle exec hanami generate model record
+```
+bundle exec hanami generate model record
+```
 
 ```ruby
 # db/migrations/2017**_create_records.rb
@@ -504,7 +519,11 @@ end
 
 그 다음에 액션을 생성하고 라우트를 지정하겠습니다. 다른 `records` 관련 액션을 미리 생성해두셔도 상관 없습니다.
 
-	bundle exec hanami generate action api records#create --skip-view
+```
+bundle exec hanami generate action api records#create --skip-view
+
+```
+
 
 ```ruby
 # apps/api/config/routes.rb
