@@ -49,7 +49,7 @@ Vue.js에 관한 더 자세한 소개와 간단한 튜토리얼은 아래 링크
   <title>MoneyBook</title>
 </head>
 <body>
-  
+
 </body>
 </html>
 ```
@@ -164,46 +164,46 @@ const app = new Vue({
 한 페이지 안에서 로그인 페이지와 회원가입 페이지를 버튼에 따라 다르게 나타나게 하려면 `v-if`, `v-else` 를 사용하면 됩니다. 자세한 내용은 [공식 가이드를 참고해주세요.](https://kr.vuejs.org/v2/guide/conditional.html)
 
 ```html
-          <!--password confirmation-->
-          <template v-if="isSignUp">
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="Password Confirmation">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </p>
-            </div>
-          </template>
+<!--password confirmation-->
+<template v-if="isSignUp">
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password Confirmation">
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+</template>
 
-          <!--buttons-->
-          <div class="field">
-            <template v-if="!isSignUp">
-              <p class="control">
-                <button class="button is-success" id="log-in-button">
-                  Login
-                </button>
-                <button class="button is-info" id="sign-up-button" @click.prevent="toggleSignUp">
-                  Sign up
-                </button>
-              </p>
-            </template>
-            <template v-else>
-              <p class="control">
-                <button class="button is-success" id="log-in-button">
-                  Submit
-                </button>
-                <button class="button is-light" id="sign-up-button" @click.prevent="toggleSignUp">
-                  Back
-                </button>
-              </p>
-            </template>
-          </div>
+<!--buttons-->
+<div class="field">
+  <template v-if="!isSignUp">
+    <p class="control">
+      <button class="button is-success" id="log-in-button">
+        Login
+      </button>
+      <button class="button is-info" id="sign-up-button" @click.prevent="toggleSignUp">
+        Sign up
+      </button>
+    </p>
+  </template>
+  <template v-else>
+    <p class="control">
+      <button class="button is-success" id="log-in-button">
+        Submit
+      </button>
+      <button class="button is-light" id="sign-up-button" @click.prevent="toggleSignUp">
+        Back
+      </button>
+    </p>
+  </template>
+</div>
 ```
 
 `template` 태그는 Vue에서 사용하는 래퍼 태그입니다. `v-if` 나  `v-else` 는 기본적으로 하나의 태그에만 작동하고, 그 하위 태그들에는 동작하지 않기 때문에 이렇게 단위로 묶어줄 필요가 있습니다.
 
-`@click.prevent` 는 `v-on:click.prevent` 와 같은 의미입니다. 이 버튼을 클릭하면 아까 지정해둔 `toggleSignIn` 메서드를 실행하게 되고, 이 메서드가 `isSignIn` 값을 변경하여 모든 템플릿에 영향을 줍니다. 
+`@click.prevent` 는 `v-on:click.prevent` 와 같은 의미입니다. 이 버튼을 클릭하면 아까 지정해둔 `toggleSignIn` 메서드를 실행하게 되고, 이 메서드가 `isSignIn` 값을 변경하여 모든 템플릿에 영향을 줍니다.
 
 
 
@@ -236,7 +236,7 @@ Vue 인스턴스의 `data` 속성은 해당 인스턴스의 스키마 역할을 
 class Form {
   constructor(data) {
     this.originalData = data;
-    
+
     for (let field in data) {
       this[field] = data[field];
     }
@@ -245,7 +245,7 @@ class Form {
 
 const app = new Vue({
   el: '#app',
-  
+
   data: {
     isSignIn: false,
     form: new Form({
@@ -264,37 +264,37 @@ Form의 `originalData` 속성은 단순히 필드 저장용으로 사용하게 �
 이제 input 태그에 데이터를 연결해보겠습니다.
 
 ```html
-          <!--email input-->
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="email" placeholder="Email" v-model="form.email">
-              <span class="icon is-small is-left">
-                <i class="fa fa-envelope"></i>
-              </span>
-            </p>
-          </div>
+<!--email input-->
+<div class="field">
+  <p class="control has-icons-left">
+    <input class="input" type="email" placeholder="Email" v-model="form.email">
+    <span class="icon is-small is-left">
+      <i class="fa fa-envelope"></i>
+    </span>
+  </p>
+</div>
 
-          <!--password input-->
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="password" placeholder="Password" v-model="form.password">
-              <span class="icon is-small is-left">
-                <i class="fa fa-lock"></i>
-              </span>
-            </p>
-          </div>
+<!--password input-->
+<div class="field">
+  <p class="control has-icons-left">
+    <input class="input" type="password" placeholder="Password" v-model="form.password">
+    <span class="icon is-small is-left">
+      <i class="fa fa-lock"></i>
+    </span>
+  </p>
+</div>
 
-          <!--password confirmation-->
-          <template v-if="isSignUp">
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="Password Confirmation" v-model="form.password_confirmation">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </p>
-            </div>
-          </template>
+<!--password confirmation-->
+<template v-if="isSignUp">
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password Confirmation" v-model="form.password_confirmation">
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+</template>
 ```
 
 각 input 태그에 `v-model` 속성과 함께, 어느 속성이 연결되어야 할 지 지정되어있는 모습을 보실 수 있습니다. 이제 각 필드의 값에 변화가 일어날 때 마다 Form 객체의 속성이 변하게 됩니다.
@@ -359,29 +359,29 @@ class Form {
 지금은 서버에 데이터를 전송한 뒤에 리턴된 토큰을 저장하는 방법을 살펴보겠습니다. 같은 Form 안에서 조건에 따라 다른 요청을 하도록 구성되어 있기 때문에 Login, Submit 버튼에 다른 메서드를 연결하겠습니다.
 
 ```html
-          <!--buttons-->
-          <div class="field">
-            <template v-if="!isSignUp">
-              <p class="control">
-                <button class="button is-success" id="log-in-button" @click.prevent="submitLogin">
-                  Login
-                </button>
-                <button class="button is-info" id="sign-up-button" @click.prevent="toggleSignUp">
-                  Sign up
-                </button>
-              </p>
-            </template>
-            <template v-else>
-              <p class="control">
-                <button class="button is-success" id="log-in-button" @click.prevent="submitSignUp">
-                  Submit
-                </button>
-                <button class="button is-light" id="sign-up-button" @click.prevent="toggleSignUp">
-                  Back
-                </button>
-              </p>
-            </template>
-          </div>
+<!--buttons-->
+<div class="field">
+  <template v-if="!isSignUp">
+    <p class="control">
+      <button class="button is-success" id="log-in-button" @click.prevent="submitLogin">
+        Login
+      </button>
+      <button class="button is-info" id="sign-up-button" @click.prevent="toggleSignUp">
+        Sign up
+      </button>
+    </p>
+  </template>
+  <template v-else>
+    <p class="control">
+      <button class="button is-success" id="log-in-button" @click.prevent="submitSignUp">
+        Submit
+      </button>
+      <button class="button is-light" id="sign-up-button" @click.prevent="toggleSignUp">
+        Back
+      </button>
+    </p>
+  </template>
+</div>
 ```
 
 ```javascript
