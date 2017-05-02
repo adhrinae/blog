@@ -7,7 +7,15 @@ categories:
   - Vue.js
 ---
 
-- Source Code: [Github](https://github.com/emaren84/moneybook_api)
+**Hanamirb + Vue.js 시리즈 목차**
+
+1. [API 서버](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-api-server)
+
+1. [로그인 & 회원가입 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-1)
+
+1. [가계부 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-2)
+
+---
 
 ## 들어가며
 
@@ -46,7 +54,7 @@ categories:
 gem install hanami
 ```
 
-설치 된 이후에 프로젝트는 원하시는 이름으로 설치하시면 됩니다. 하나미는 SQLite, MySQL, PostgreSQL 등을 지원하지만, 기본적으로 PostgreSQL을 권장합니다. 또한 테스팅 프레임워크도 처음 프로젝트를 설정할 때 Minitest, RSpec 중에서 고르실 수 있습니다. 제가 아직 RSpec은 커녕 TDD를 잘 못하기 때문에 Minitest로 진행해보겠습니다. 
+설치 된 이후에 프로젝트는 원하시는 이름으로 설치하시면 됩니다. 하나미는 SQLite, MySQL, PostgreSQL 등을 지원하지만, 기본적으로 PostgreSQL을 권장합니다. 또한 테스팅 프레임워크도 처음 프로젝트를 설정할 때 Minitest, RSpec 중에서 고르실 수 있습니다. 제가 아직 RSpec은 커녕 TDD를 잘 못하기 때문에 Minitest로 진행해보겠습니다.
 
 ```
 hanami new moneybook-api --database=postgres --test=minitest
@@ -179,7 +187,7 @@ post '/auth/sign_up', to: 'auth#sign_up'
 
 사용자를 등록하는 과정은 JWT랑은 관련이 없습니다. 단순히 이메일, 비밀번호, 비밀번호 확인을 하는 패러매터를 전달 받은 뒤, 유효성 검사에 성공하면 비밀번호를 암호화하여 데이터베이스에 저장하면 됩니다.
 
-우리는 JSON API 서버를 만들고 있기 때문에 애플리케이션의 `body_parsers` 나 `default_request_format` 등의 설정을 바꾸어 주어야 합니다. 
+우리는 JSON API 서버를 만들고 있기 때문에 애플리케이션의 `body_parsers` 나 `default_request_format` 등의 설정을 바꾸어 주어야 합니다.
 
 ```ruby
 # apps/api/application.rb
@@ -757,7 +765,7 @@ module Api::Controllers::Records
 end
 ```
 
-`SetRecord` 모듈도 [공식 가이드의 내용](http://hanamirb.org/guides/actions/share-code/)을 참고하여 만들었습니다. Update와 Destroy 액션에서 공통적으로 레코드를 찾는 과정이 필요한데, 모듈에다 구현해두고 여러 액션에서 재활용할 수 있도록 만든겁니다. 
+`SetRecord` 모듈도 [공식 가이드의 내용](http://hanamirb.org/guides/actions/share-code/)을 참고하여 만들었습니다. Update와 Destroy 액션에서 공통적으로 레코드를 찾는 과정이 필요한데, 모듈에다 구현해두고 여러 액션에서 재활용할 수 있도록 만든겁니다.
 
 ```ruby
 # apps/api/controllers/records/set_record.rb
@@ -813,3 +821,5 @@ end
 ---
 
 사실 더 개선할 부분들은 많습니다. 예를 들면 Interactor 를 활용한 로직 분리, 명확한 의존성 주입으로 테스트 효율 높이기 + 더 짜임새 있는 테스트 작성 등을 고려해야겠지요. 마침 [비슷한 내용의 예제 코드가 아주아주 높은 퀄리티로 작성되어 있어서](https://github.com/nickgnd/hanami-jwt-example) 이번 튜토리얼을 구현해보면서 기본 개념을 익히신 다음에, 다른 예제를 참고하시면 큰 도움이 될 것이라 생각합니다.
+
+- Source Code: [Github](https://github.com/emaren84/moneybook_api)

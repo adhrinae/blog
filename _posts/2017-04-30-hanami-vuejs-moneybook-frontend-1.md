@@ -7,7 +7,15 @@ categories:
   - Vue.js
 ---
 
+**Hanamirb + Vue.js 시리즈 목차**
 
+1. [API 서버](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-api-server)
+
+1. [로그인 & 회원가입 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-1)
+
+1. [가계부 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-2)
+
+---
 
 지난 시간에 하나미로 JSON API 서버를 만들었습니다. 이제 가계부 클라이언트를 Vue.js로 구현해보겠습니다.
 처음에는 vue-cli나 Nuxt같은 다양한 도구를 이용해서 프로젝트를 만들어야 하나 고민을 했는데, 굳이 그렇게 할 필요도 없이 쉽게 구현 가능하다는 사실을 깨달았습니다.

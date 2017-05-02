@@ -7,7 +7,15 @@ categories:
   - Vue.js
 ---
 
+**Hanamirb + Vue.js 시리즈 목차**
 
+1. [API 서버](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-api-server)
+
+1. [로그인 & 회원가입 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-1)
+
+1. [가계부 페이지](https://emaren84.github.io/blog/archivers/hanami-vuejs-moneybook-frontend-2)
+
+---
 
 로그인 페이지를 만드는데도 꽤 많은 노력이 들었지만, 기존에 사용하시던 방법으로 같은 페이지를 작성한다고 했을 때 얼마나 시간과 노력이 드는지 한번 생각해보시면 Vue.js로 구현하는 쪽이 약간 쉽지 않으셨는지요?
 
@@ -256,7 +264,7 @@ const app = new Vue({
         return sum + income.amount;
       }, 0);
     },
-    
+
     sumOfOutcome() {
       return this.records.filter(record => {
         return record.amount < 0;
@@ -264,7 +272,7 @@ const app = new Vue({
         return sum + outcome.amount;
       }, 0);
     },
-    
+
     totalAmount() {
       return this.records.reduce((sum, record) => {
         return sum + record.amount;
@@ -406,7 +414,7 @@ class Form {
       this[field] = data[field];
     }
   }
-  
+
   data() {
     let data = {};
 
@@ -415,7 +423,7 @@ class Form {
     }
     return data;
   }
-  
+
   create() {
     let data = { record: this.data() };
     let token = localStorage.getItem('auth_token');
@@ -436,7 +444,7 @@ class Form {
 
 const app = new Vue({
   el: '#app',
-  
+
   data:{
     records: [],
     insertForm: new Form({
@@ -729,7 +737,7 @@ const app = new Vue({
   <update-row v-else
     @toggle-edit="toggleEditModeOf(index)"
     :record="record" :form="updateForm"
-    @form-update="form => { updateForm = form }" 
+    @form-update="form => { updateForm = form }"
               // 여기서 form은 아까 컴포넌트에 있던 this.editForm 입니다
     @update-record="updateRecord"></update-row>
 </template>
