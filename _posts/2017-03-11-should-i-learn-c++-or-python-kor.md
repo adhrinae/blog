@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) C++와 Python 중 무엇을 먼저 배울까?
+title: "[번역] C++와 Python 중 무엇을 먼저 배울까?"
 categories:
   - Translation
   - Idea

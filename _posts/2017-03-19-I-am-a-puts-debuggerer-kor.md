@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 나는 'puts' 디버거다
+title: "[번역] 나는 'puts' 디버거다"
 categories:
   - Translation
   - Ruby

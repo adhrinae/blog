@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 전역 상태를 격리하라
+title: "[번역] 전역 상태를 격리하라"
 categories:
   - Translation
   - Ruby

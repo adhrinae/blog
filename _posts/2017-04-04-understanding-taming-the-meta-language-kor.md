@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 메타언어 길들이기
+title: "[번역] 메타언어 길들이기"
 categories:
   - Translation
   - General

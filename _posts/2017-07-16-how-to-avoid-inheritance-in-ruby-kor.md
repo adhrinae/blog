@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 루비에서 상속을 피하는 방법
+title: "[번역] 루비에서 상속을 피하는 방법"
 categories:
   - Translation
   - Ruby

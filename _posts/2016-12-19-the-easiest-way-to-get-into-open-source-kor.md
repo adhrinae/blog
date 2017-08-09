@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 오픈 소스에 참여하는 가장 쉬운 방법
+title: "[번역] 오픈 소스에 참여하는 가장 쉬운 방법"
 categories:
   - Translation
   - Rails

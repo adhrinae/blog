@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 도우면서 배우기
+title: "[번역] 도우면서 배우기"
 categories:
   - Translation
   - Idea

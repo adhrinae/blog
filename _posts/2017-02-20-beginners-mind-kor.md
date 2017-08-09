@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 초심자의 마음가짐
+title: "[번역] 초심자의 마음가짐"
 categories:
   - Translation
   - Idea

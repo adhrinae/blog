@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 진짜배기 코드 평가자라면 하지 말아야 할 네 가지
+title: "[번역] 진짜배기 코드 평가자라면 하지 말아야 할 네 가지"
 categories:
   - Translation
   - Idea

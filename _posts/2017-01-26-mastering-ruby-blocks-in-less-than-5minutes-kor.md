@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 루비 블록을 5분 이내에 마스터하기
+title: "[번역] 루비 블록을 5분 이내에 마스터하기"
 categories:
   - Translation
   - Ruby

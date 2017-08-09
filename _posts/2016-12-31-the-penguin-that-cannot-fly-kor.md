@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) 펭귄은 날 수 없다(The Penguin That Can't Fly)
+title: "[번역] 펭귄은 날 수 없다(The Penguin That Can't Fly)"
 categories:
   - Translation
   - Ruby
