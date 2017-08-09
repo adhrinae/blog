@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (번역) Boostnote vs Notes: Choosing a note-taking Tool
+title: "[번역] Boostnote vs Notes: Choosing a note-taking Tool"
 categories:
   - Translation
   - Markdown
