@@ -20,10 +20,11 @@ disqus_shortname: rinaesdevlog   # get one: https://disqus.com/admin/signup/
 #duoshuo_shortname: xxx  # get one: http://duoshuo.com/create-site/
 
 permalink: /archivers/:title
-gems:
- - jekyll-paginate
- - jekyll-gist
- - jemoji
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-gist
+  - jemoji
 
 # Build settings
 paginate: 5
