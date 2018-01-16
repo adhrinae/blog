@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 세상은 루비의 의존성 주입에 대한 다른 글을 원한다"
+redirect_to:
+  -https://emaren84.github.io/posts/the-world-needs-another-post-about-dependency-injection-in-ruby-kor
 categories:
   - Translation
   - Ruby

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 루비에서 상속을 피하는 방법"
+redirect_to:
+  -https://emaren84.github.io/posts/how-to-avoid-inheritance-in-ruby-kor
 categories:
   - Translation
   - Ruby

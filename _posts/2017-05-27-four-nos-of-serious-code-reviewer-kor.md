@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 진짜배기 코드 평가자라면 하지 말아야 할 네 가지"
+redirect_to:
+  -https://emaren84.github.io/posts/four-nos-of-serious-code-reviewer-kor
 categories:
   - Translation
   - Idea

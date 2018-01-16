@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 초심자의 마음가짐"
+redirect_to:
+  -https://emaren84.github.io/posts/beginners-mind-kor
 categories:
   - Translation
   - Idea

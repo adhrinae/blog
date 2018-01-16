@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Hanamirb + Vue.js 로 간단 가계부 구현 (API 서버 편)
+redirect_to:
+  -https://emaren84.github.io/posts/hanami-vuejs-moneybook-api-server
 categories:
   - Ruby
   - Hanami

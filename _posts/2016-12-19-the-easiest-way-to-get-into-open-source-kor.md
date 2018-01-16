@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 오픈 소스에 참여하는 가장 쉬운 방법"
+redirect_to:
+  -https://emaren84.github.io/posts/the-easiest-way-to-get-into-open-source-kor
 categories:
   - Translation
   - Rails

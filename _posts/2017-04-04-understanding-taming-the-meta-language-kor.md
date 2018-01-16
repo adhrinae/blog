@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 메타언어 길들이기"
+redirect_to:
+  -https://emaren84.github.io/posts/understanding-taming-the-meta-language-kor
 categories:
   - Translation
   - General

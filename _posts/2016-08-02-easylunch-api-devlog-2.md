@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Easylunch Api 서버 제작기 - 2
+redirect_to:
+  -https://emaren84.github.io/posts/easylunch-api-devlog-2
 categories:
   - Rails
   - Rorlab Workshop

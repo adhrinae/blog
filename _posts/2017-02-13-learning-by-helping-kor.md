@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 도우면서 배우기"
+redirect_to:
+  -https://emaren84.github.io/posts/learning-by-helping-kor
 categories:
   - Translation
   - Idea

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 마크다운, nvALT, Dropbox를 활용한 노트관리 아이디어
+redirect_to:
+  -https://emaren84.github.io/posts/markdown-with-dropbox-workflow
 categories:
   - Markdown
   - Idea

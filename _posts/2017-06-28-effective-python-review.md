@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 파이썬 코딩의 기술(Effective Python) 리뷰
+redirect_to:
+  -https://emaren84.github.io/posts/effective-python-review
 categories:
   - Reading
 ---
