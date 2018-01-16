@@ -1,8 +1,6 @@
 ---
 layout: post
 title: Hanamirb + Vue.js 로 간단 가계부 구현 (프론트엔드 편 - 1)
-redirect_to:
-  -https://emaren84.github.io/posts/hanami-vuejs-moneybook-frontend-1
 categories:
   - Ruby
   - Hanami

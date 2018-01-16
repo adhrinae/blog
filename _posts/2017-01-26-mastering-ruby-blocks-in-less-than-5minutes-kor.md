@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "[번역] 루비 블록을 5분 이내에 마스터하기"
-redirect_to:
-  -https://emaren84.github.io/posts/mastering-ruby-blocks-in-less-than-5minutes-kor
 categories:
   - Translation
   - Ruby

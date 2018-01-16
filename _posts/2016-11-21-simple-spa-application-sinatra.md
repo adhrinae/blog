@@ -1,8 +1,6 @@
 ---
 layout: post
 title: 시나트라(Sinatra)로 간단한 Single Page Application(SPA) 제작해 보기
-redirect_to:
-  -https://emaren84.github.io/posts/simple-spa-application-sinatra
 categories:
   - Ruby
   - Sinatra

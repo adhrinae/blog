@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "[번역] 전역 상태를 격리하라"
-redirect_to:
-  -https://emaren84.github.io/posts/isolate-global-state-kor
 categories:
   - Translation
   - Ruby

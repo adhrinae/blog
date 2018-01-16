@@ -1,8 +1,6 @@
 ---
 layout: post
 title: 하나미 프로젝트에서 webpack 설정하기
-redirect_to:
-  -https://emaren84.github.io/posts/hanami-webpack-config
 categories:
   - Ruby
   - Hanami

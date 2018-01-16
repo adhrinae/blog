@@ -1,8 +1,6 @@
 ---
 layout: post
 title: 레일즈(Ruby on Rails)와는 또 다른 루비 웹 프레임워크, Hanami(하나미)
-redirect_to:
-  -https://emaren84.github.io/posts/hanami-introduction
 categories:
   - Ruby
   - Rails

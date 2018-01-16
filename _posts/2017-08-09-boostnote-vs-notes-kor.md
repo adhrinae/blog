@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "[번역] Boostnote vs Notes: Choosing a note-taking Tool"
-redirect_to:
-  -https://emaren84.github.io/posts/boostnote-vs-notes-kor
 categories:
   - Translation
   - Markdown

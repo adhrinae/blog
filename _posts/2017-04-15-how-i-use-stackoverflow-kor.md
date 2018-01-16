@@ -1,8 +1,6 @@
 ---
 layout: post
 title: (번역) 내가 StackOverflow를 사용하는 방법
-redirect_to:
-  -https://emaren84.github.io/posts/how-i-use-stackoverflow-kor
 categories:
   - Translation
   - Idea

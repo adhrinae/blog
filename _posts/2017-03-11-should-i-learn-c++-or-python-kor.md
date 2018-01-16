@@ -1,8 +1,6 @@
 ---
 layout: post
 title: "[번역] C++와 Python 중 무엇을 먼저 배울까?"
-redirect_to:
-  -https://emaren84.github.io/posts/should-i-learn-c++-or-python-kor
 categories:
   - Translation
   - Idea
