@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[공지] 블로그 이전 안내"
+redirect_to:
+  - https://emaren84.github.io/posts/notice-for-new-blog
 categories:
   - Notice
 ---

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: ‘Remote - 사무실 따윈 필요 없어!’ 를 읽고
+redirect_to:
+  - https://emaren84.github.io/posts/reading-remote
 categories:
   - Reading
 ---

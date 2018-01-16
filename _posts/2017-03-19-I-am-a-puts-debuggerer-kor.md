@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 나는 'puts' 디버거다"
+redirect_to:
+  - https://emaren84.github.io/posts/I-am-a-puts-debuggerer-kor
 categories:
   - Translation
   - Ruby

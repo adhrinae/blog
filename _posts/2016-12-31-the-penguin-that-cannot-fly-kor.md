@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 펭귄은 날 수 없다(The Penguin That Can't Fly)"
+redirect_to:
+  - https://emaren84.github.io/posts/the-penguin-that-cannot-fly-kor
 categories:
   - Translation
   - Ruby

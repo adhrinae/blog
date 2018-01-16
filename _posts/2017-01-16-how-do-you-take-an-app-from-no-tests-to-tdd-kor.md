@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "[번역] 테스트가 없는 앱을 이용하여 TDD를 배우는 방법"
+redirect_to:
+  - https://emaren84.github.io/posts/how-do-you-take-an-app-from-no-tests-to-tdd-kor
 categories: 
   - Translation
   - Ruby
